@@ -1,0 +1,22 @@
+.tasksContainer {
+  gap: 0.625rem;
+  max-width: 700px;
+  margin: 0 auto;
+
+  .tasksHeader {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      font-weight: 700;
+
+      &:first-child {
+        color: var(--blue);
+      }
+
+      &:last-child {
+        color: var(--purpleDark);
+      }
+    }
+  }
+}
