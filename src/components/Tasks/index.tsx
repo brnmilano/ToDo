@@ -1,25 +1,12 @@
-import { Box } from '@mui/material';
-import styles from './styles.module.scss'
-import { Checkbox } from '../Checkbox';
+import styles from './styles.module.scss';
 import trashIcon from '../../assets/trash.svg';
-import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
-
-interface TasksProps {
-  id: number,
-  description: string,
-}
+import { Box } from '@mui/material';
+import { Checkbox } from '../Checkbox';
+import { TasksContext } from '../../transactions';
+import { useContext } from 'react';
 
 export function Tasks() {
-  const [tasks, setTasks] = useState<TasksProps[]>([]);
-
-  useEffect(() => {
-    api.get('/lista-de-tarefas')
-      .then(response => setTasks(response.data.tasks));
-  }, [])
-
-  console.log(tasks);
-
+  const { tasks } = useContext(TasksContext)
 
   return (
     <Box className={styles.tasksContainer}>
@@ -47,7 +34,7 @@ export function Tasks() {
             <Box key={task.id} className={styles.tasks}>
               <Checkbox />
 
-              <p>{task.description}</p>
+              <p>{task.addTask}</p>
 
               <button>
                 <img src={trashIcon} alt="Apagar tarefa" />
