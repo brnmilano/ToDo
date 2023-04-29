@@ -6,6 +6,10 @@ html {
   @media (max-width: 720px) {
     font-size: 87.5%;
   }
+
+  button {
+    cursor: pointer;
+  }
 }
 
 html,
