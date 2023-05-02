@@ -32,11 +32,11 @@ export function TasksProvider({ children }: TasksProviderProps) {
   async function createNewTask(taskInput: TasksInput) {
     const response = await api.post('/lista-de-tarefas', taskInput)
 
-    const { teste } = response.data
+    const { task } = response.data
 
     setTasks([
       ...tasks,
-      teste
+      task
     ]);
   }
 

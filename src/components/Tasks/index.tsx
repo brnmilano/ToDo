@@ -8,6 +8,9 @@ import { useContext } from 'react';
 export function Tasks() {
   const { tasks } = useContext(TasksContext)
 
+  console.log(tasks);
+
+
   return (
     <Box className={styles.tasksContainer}>
       <Box className={styles.tasksHeader}>
@@ -34,7 +37,7 @@ export function Tasks() {
             <Box key={task.id} className={styles.tasks}>
               <Checkbox />
 
-              <p>{task.addTask}</p>
+              <p>{task?.addTask}</p>
 
               <button>
                 <img src={trashIcon} alt="Apagar tarefa" />
