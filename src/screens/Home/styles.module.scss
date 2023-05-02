@@ -5,20 +5,19 @@
   justify-content: center;
   height: 100vh;
   background-color: #8284fa52;
-  gap: 20px;
+  gap: 1.25rem;
 
   p {
-    max-width: 350px;
+    max-width: 43.75rem;
     margin: 0 auto;
     font-style: italic;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--black);
   }
 
   .social {
     display: flex;
-    margin-top: 20px;
     align-items: center;
   }
 
@@ -26,8 +25,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 10px;
-    border-radius: 10px;
+    padding: 0.625rem;
+    border-radius: 0.625rem;
     background-color: #4ea7de7e;
     transition: all 0.1s ease-out;
 
@@ -38,7 +37,7 @@
     }
 
     &:not(:first-child) {
-      margin-left: 16px;
+      margin-left: 1rem;
     }
   }
 }

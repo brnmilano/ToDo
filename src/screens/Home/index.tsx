@@ -17,9 +17,17 @@ export function Home() {
 
   return (
     <Box className={styles.container}>
-      <p>Descrição</p>
+      <Box>
+        <p>
+          O projeto consiste em uma aplicação de lista de tarefas (ToDo) desenvolvida em ReactJS, utilizando TypeScript e MirageJS para criar uma fake API. A aplicação permite ao usuário adicionar e excluir tarefas, bem como marcar como concluídas. A lista de tarefas é exibida em tempo real e as atualizações são refletidas instantaneamente na interface do usuário.
+        </p>
 
-      <Button onClick={() => handleRedirect()} size='medium'>Acessar to-do</Button>
+        <p>
+          O MirageJS é utilizado para simular a comunicação com um backend real, permitindo que o desenvolvedor teste a aplicação sem a necessidade de um servidor real. O TypeScript é utilizado para adicionar tipagem estática ao código, aumentando a segurança e facilidade de manutenção do projeto.
+        </p>
+      </Box>
+
+      <Button onClick={() => handleRedirect()} size='medium'>Acessar ToDo</Button>
 
       <Box className={styles.social}>
         <a
