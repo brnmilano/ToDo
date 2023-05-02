@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://to-do-orcin-nu.vercel.app/api",
+  baseURL: "https://to-do-orcin-nu.vercel.app/lista-de-tarefas/api",
 });
