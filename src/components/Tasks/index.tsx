@@ -1,15 +1,27 @@
 import styles from './styles.module.scss';
 import trashIcon from '../../assets/trash.svg';
+import { api } from '../../services/api';
 import { Box } from '@mui/material';
-import { Checkbox } from '../Checkbox';
 import { TasksContext } from '../../transactions';
 import { useContext } from 'react';
+import clsx from 'clsx';
+// import { Checkbox } from '../Checkbox';
+
 
 export function Tasks() {
-  const { tasks } = useContext(TasksContext)
+  const { tasks, setTasks } = useContext(TasksContext)
 
-  console.log(tasks);
+  // essa função vai atualizar a tarefa fazendo um filtro com o id da tarefa que foi clicada e depois vai atualizar a tarefa do array de tarefas.
+  const handleUpdateTask = async (id: number) => {
+    await api.patch(`/lista-de-tarefas/${id}`);
+    setTasks(tasks.map((task) => task.id === id ? { ...task, isCompleted: !task.isCompleted } : task));
+  }
 
+  // essa função vai deletar a tarefa fazendo um filtro com o id da tarefa que foi clicada e depois vai remover a tarefa do array de tarefas.
+  const handleDeleteTask = async (id: number) => {
+    await api.delete(`/lista-de-tarefas/${id}`);
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
 
   return (
     <Box className={styles.tasksContainer}>
@@ -18,7 +30,7 @@ export function Tasks() {
           <span>
             Tarefas criadas
 
-            <p>5</p>
+            <p>{tasks.length}</p>
           </span>
         </Box>
 
@@ -26,7 +38,7 @@ export function Tasks() {
           <span>
             Concluídas
 
-            <p>0 de 5</p>
+            <p>{tasks.filter(task => task.isCompleted).length} de {tasks.length}</p>
           </span>
         </Box>
       </Box>
@@ -35,13 +47,22 @@ export function Tasks() {
         <Box className={styles.tasksList}>
           {tasks.map(task => (
             <Box key={task.id} className={styles.tasks}>
-              <Checkbox />
+              <input
+                type='checkbox'
+                checked={task?.isCompleted}
+                onChange={() => handleUpdateTask(task.id)}
+                className={styles.checkboxInput}
+              />
 
-              <p>{task?.addTask}</p>
+              <Box className={clsx(styles.tasksText, task.isCompleted && styles.active)}>
+                <p>{task?.addTask}</p>
+              </Box>
 
-              <button>
-                <img src={trashIcon} alt="Apagar tarefa" />
-              </button>
+              <Box className={styles.deleteTask}>
+                <button onClick={() => handleDeleteTask(task.id)}>
+                  <img src={trashIcon} alt="Apagar tarefa" />
+                </button>
+              </Box>
             </Box>
           ))}
         </Box>

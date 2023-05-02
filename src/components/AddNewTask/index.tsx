@@ -12,6 +12,7 @@ export function AddNewTask() {
   async function handleCreateNewTask() {
     await createNewTask({
       addTask,
+      isCompleted: false,
     })
 
     setAddTask('')

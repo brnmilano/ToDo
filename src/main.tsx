@@ -17,7 +17,8 @@ createServer({
       tasks: [
         {
           id: 1,
-          addTask: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod velit eget sapien bibendum, sit amet sollicitudin turpis efficitur. Sed at mollis felis. Donec cursus consectetur velit ac tristique.',
+          addTask: 'Lorem ipsum dolor sit amet.',
+          isCompleted: false,
         },
       ]
     })
@@ -33,6 +34,22 @@ createServer({
     this.post('/lista-de-tarefas', (schema, request) => {
       const data = JSON.parse(request.requestBody);
       return schema.create('task', data);
+    })
+
+    this.delete('/lista-de-tarefas/:id', (schema, request) => {
+      const id = parseInt(request.params.id, 10);
+      schema.db.tasks.remove(id);
+
+      return new Response('', { status: 204 });
+    })
+
+    this.patch('/lista-de-tarefas/:id', (schema, request) => {
+      const id = request.params.id;
+      const attrs = JSON.parse(request.requestBody);
+
+      const task = schema.db.tasks.update(id, attrs);
+
+      return task;
     })
   }
 })

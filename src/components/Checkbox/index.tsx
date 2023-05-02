@@ -5,7 +5,7 @@ type CheckBoxProps = {
   label?: string;
 };
 
-export function Checkbox({ label }: CheckBoxProps) {
+export function Checkbox({ label, ...rest }: CheckBoxProps) {
   const [selected, setSelected] = useState(false);
 
   const handleClick = () => {
@@ -16,6 +16,7 @@ export function Checkbox({ label }: CheckBoxProps) {
     <div className={styles.checkboxContainer}>
       <label>
         <input
+          {...rest}
           className={styles.checkboxInput}
           type="checkbox"
           checked={selected}

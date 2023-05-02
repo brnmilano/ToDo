@@ -1,19 +1,21 @@
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, useState, ReactNode, Dispatch } from "react";
 import { api } from "./services/api";
 
 interface TasksProps {
   id: number,
   addTask: string,
+  isCompleted: boolean,
 }
 
 interface TasksProviderProps {
   children: ReactNode;
 }
 
-type TasksInput = Pick<TasksProps, 'addTask'>
+type TasksInput = Pick<TasksProps, 'addTask' | 'isCompleted'>
 
 interface TasksContextData {
   tasks: TasksProps[];
+  setTasks: Dispatch<TasksProps[]>;
   createNewTask: (task: TasksInput) => Promise<void>;
 }
 
@@ -41,7 +43,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
   }
 
   return (
-    <TasksContext.Provider value={{ tasks, createNewTask }}>
+    <TasksContext.Provider value={{ tasks, createNewTask, setTasks }}>
       {children}
     </TasksContext.Provider>
   );
