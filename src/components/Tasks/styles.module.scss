@@ -48,6 +48,29 @@
     }
   }
 
+  .tasksEmpty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--gray300);
+    margin-top: 3rem;
+
+    svg {
+      height: 6rem;
+      width: 6rem;
+    }
+
+    h1 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
   .tasksList {
     margin-top: 2rem;
 

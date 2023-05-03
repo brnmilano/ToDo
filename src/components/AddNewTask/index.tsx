@@ -3,7 +3,8 @@ import Box from '@mui/material/Box';
 import styles from './styles.module.scss';
 import { Input } from '../Input';
 import { TasksContext } from '../../transactions';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { localstorage_tasks_data_key } from '../../variables';
 
 type errorsMessageProps = {
   field: string,
@@ -14,7 +15,7 @@ export function AddNewTask() {
   const { createNewTask } = useContext(TasksContext)
   const [inputErrors, setInputErrors] = useState<errorsMessageProps[]>([]);
 
-  const [addTask, setAddTask] = useState('')
+  const [addTask, setAddTask] = useState<string>('')
 
   async function handleCreateNewTask() {
     await createNewTask({
@@ -22,9 +23,23 @@ export function AddNewTask() {
       isCompleted: false,
     })
 
+    localStorage.setItem(localstorage_tasks_data_key, addTask);
+    setAddTask(addTask);
+
     setAddTask('')
-    handleValidateInput()
   }
+
+  const getDataFromLocalStorage = (): void => {
+    const storedData = localStorage.getItem(addTask);
+    if (storedData) {
+      setAddTask(storedData);
+    }
+  };
+
+  useEffect(() => {
+    getDataFromLocalStorage();
+  }, []);
+
 
   const handleValidateInput = () => {
     setInputErrors([]);
@@ -38,6 +53,8 @@ export function AddNewTask() {
     if (currentErrors.length > 0) {
       return setInputErrors(currentErrors);
     }
+
+    handleCreateNewTask();
   }
 
   return (
@@ -58,7 +75,7 @@ export function AddNewTask() {
         }
       />
 
-      <button onClick={handleCreateNewTask}>
+      <button onClick={handleValidateInput}>
         Criar
 
         <img src={addImg} alt="Criar" />
