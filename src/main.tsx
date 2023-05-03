@@ -14,13 +14,7 @@ createServer({
 
   seeds(server) {
     server.db.loadData({
-      tasks: [
-        {
-          id: 1,
-          addTask: 'Lorem ipsum dolor sit amet.',
-          isCompleted: false,
-        },
-      ]
+      tasks: []
     })
   },
 
