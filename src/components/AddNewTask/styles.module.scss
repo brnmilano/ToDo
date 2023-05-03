@@ -1,24 +1,9 @@
-.summaryContainer {
+.addNewTaskContainer {
   display: flex;
   gap: 0.625rem;
   max-width: 700px;
   margin: 0 auto;
   margin-top: -4.3rem;
-
-  input {
-    background-color: var(--gray500);
-    color: var(--white);
-    padding: 1rem;
-    border-radius: 0.625rem;
-    font-size: 1rem;
-    width: 100%;
-    border: 1px solid var(--gray700);
-    transition: filter 0.2s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
-  }
 
   button {
     display: flex;
