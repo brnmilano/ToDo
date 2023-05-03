@@ -20,7 +20,7 @@ export function Input({
   type,
   ...rest
 }: InputProps) {
-  const [inputType, setInputType] = useState<
+  const [inputType] = useState<
     HTMLInputTypeAttribute | undefined
   >(type);
 
