@@ -76,6 +76,8 @@ createServer({
 
       localStorage.setItem('tasks', JSON.stringify(tasksFiltered))
 
+      schema.none
+
       return new Response(204, {});
     })
 
@@ -100,6 +102,8 @@ createServer({
 
       localStorage.setItem('tasks', JSON.stringify(allTasks))
 
+      //teste
+      schema.none
       return new Response(200, {});
     })
   }
