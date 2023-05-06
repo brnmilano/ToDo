@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 import styles from './styles.module.scss';
 import { Input } from '../Input';
 import { TasksContext } from '../../transactions';
-import { useContext, useEffect, useState } from 'react';
-import { localstorage_tasks_data_key } from '../../variables';
+import { useContext, useState } from 'react';
 
 type errorsMessageProps = {
   field: string,
@@ -23,23 +22,8 @@ export function AddNewTask() {
       isCompleted: false,
     })
 
-    localStorage.setItem(localstorage_tasks_data_key, addTask);
-    setAddTask(addTask);
-
     setAddTask('')
   }
-
-  const getDataFromLocalStorage = (): void => {
-    const storedData = localStorage.getItem(addTask);
-    if (storedData) {
-      setAddTask(storedData);
-    }
-  };
-
-  useEffect(() => {
-    getDataFromLocalStorage();
-  }, []);
-
 
   const handleValidateInput = () => {
     setInputErrors([]);

@@ -13,13 +13,17 @@ export function Tasks() {
   // essa função vai atualizar a tarefa fazendo um filtro com o id da tarefa que foi clicada e depois vai atualizar a tarefa do array de tarefas.
   const handleUpdateTask = async (id: number) => {
     await api.patch(`/lista-de-tarefas/${id}`);
-    setTasks(tasks.map((task) => task.id === id ? { ...task, isCompleted: !task.isCompleted } : task));
+    const tasksResponse = await api.get('/lista-de-tarefas')
+
+    setTasks(tasksResponse.data);
   }
 
   // essa função vai deletar a tarefa fazendo um filtro com o id da tarefa que foi clicada e depois vai remover a tarefa do array de tarefas.
   const handleDeleteTask = async (id: number) => {
     await api.delete(`/lista-de-tarefas/${id}`);
-    setTasks(tasks.filter((task) => task.id !== id));
+    const tasksResponse = await api.get('/lista-de-tarefas')
+
+    setTasks(tasksResponse.data);
   };
 
   return (

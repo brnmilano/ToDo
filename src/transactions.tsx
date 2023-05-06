@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState, ReactNode, Dispatch } from "react";
 import { api } from "./services/api";
 
-interface TasksProps {
+export interface TasksProps {
   id: number,
   addTask: string,
   isCompleted: boolean,
@@ -28,18 +28,14 @@ export function TasksProvider({ children }: TasksProviderProps) {
 
   useEffect(() => {
     api.get('/lista-de-tarefas')
-      .then(response => setTasks(response.data.tasks));
+      .then(response => setTasks(response.data));
   }, [])
 
   async function createNewTask(taskInput: TasksInput) {
-    const response = await api.post('/lista-de-tarefas', taskInput)
+    await api.post('/lista-de-tarefas', taskInput)
+    const tasksResponse = await api.get('/lista-de-tarefas')
 
-    const { task } = response.data
-
-    setTasks([
-      ...tasks,
-      task
-    ]);
+    setTasks(tasksResponse.data);
   }
 
   return (

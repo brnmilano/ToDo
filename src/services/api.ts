@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://to-do-git-master-brnmilano.vercel.app/api",
+  baseURL: "http://127.0.0.1:5173/api",
 });
