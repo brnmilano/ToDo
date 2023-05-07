@@ -22,7 +22,7 @@ createServer({
   routes() {
     this.namespace = 'api';
 
-    this.get('/lista-de-tarefas', () => {
+    this.get('/', () => {
       const storageData = localStorage.getItem('tasks')
 
       const storageDataVerify = storageData !== null && JSON.parse(storageData) as TasksProps[]
@@ -36,7 +36,7 @@ createServer({
       return new Response(200, {}, allTasks)
     })
 
-    this.post('/lista-de-tarefas', (schema, request) => {
+    this.post('/', (schema, request) => {
       const storageData = localStorage.getItem('tasks')
 
       const storageDataVerify = storageData !== null && JSON.parse(storageData) as TasksProps[]
@@ -60,7 +60,7 @@ createServer({
       return schema.create('task', data);
     })
 
-    this.delete('/lista-de-tarefas/:id', (schema, request) => {
+    this.delete('/:id', (schema, request) => {
       const storageData = localStorage.getItem('tasks')
 
       const storageDataVerify = storageData !== null && JSON.parse(storageData) as TasksProps[]
@@ -81,7 +81,7 @@ createServer({
       return new Response(204, {});
     })
 
-    this.patch('/lista-de-tarefas/:id', (schema, request) => {
+    this.patch('/:id', (schema, request) => {
       const storageData = localStorage.getItem('tasks')
 
       const storageDataVerify = storageData !== null && JSON.parse(storageData) as TasksProps[]

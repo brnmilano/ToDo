@@ -27,13 +27,13 @@ export function TasksProvider({ children }: TasksProviderProps) {
   const [tasks, setTasks] = useState<TasksProps[]>([]);
 
   useEffect(() => {
-    api.get('/lista-de-tarefas')
+    api.get('/')
       .then(response => setTasks(response.data));
   }, [])
 
   async function createNewTask(taskInput: TasksInput) {
-    await api.post('/lista-de-tarefas', taskInput)
-    const tasksResponse = await api.get('/lista-de-tarefas')
+    await api.post('/', taskInput)
+    const tasksResponse = await api.get('/')
 
     setTasks(tasksResponse.data);
   }
