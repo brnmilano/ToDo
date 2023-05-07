@@ -102,9 +102,11 @@ createServer({
 
       localStorage.setItem('tasks', JSON.stringify(allTasks))
 
-      //teste
-      schema.none
-      return new Response(200, {});
+      const attrs = JSON.parse(request.requestBody);
+
+      const task = schema.db.tasks.update(id, attrs);
+
+      return task;
     })
   }
 })
