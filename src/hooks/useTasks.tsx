@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState, ReactNode, Dispatch } from "react";
-import { api } from "./services/api";
+import { createContext, useEffect, useState, ReactNode, Dispatch, useContext } from "react";
+import { api } from "../services/api";
 
 export interface TasksProps {
   id: number,
@@ -44,3 +44,9 @@ export function TasksProvider({ children }: TasksProviderProps) {
     </TasksContext.Provider>
   );
 }
+
+export function useTasks() {
+  const context = useContext(TasksContext)
+
+  return context
+} 

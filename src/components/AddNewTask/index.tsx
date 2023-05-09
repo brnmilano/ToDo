@@ -2,8 +2,8 @@ import addImg from '../../assets/add.svg';
 import Box from '@mui/material/Box';
 import styles from './styles.module.scss';
 import { Input } from '../Input';
-import { TasksContext } from '../../transactions';
-import { useContext, useState } from 'react';
+import { useTasks } from '../../hooks/useTasks';
+import { useState } from 'react';
 
 type errorsMessageProps = {
   field: string,
@@ -11,7 +11,7 @@ type errorsMessageProps = {
 }
 
 export function AddNewTask() {
-  const { createNewTask } = useContext(TasksContext)
+  const { createNewTask } = useTasks();
   const [inputErrors, setInputErrors] = useState<errorsMessageProps[]>([]);
 
   const [addTask, setAddTask] = useState<string>('')

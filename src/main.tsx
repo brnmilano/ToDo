@@ -6,7 +6,7 @@ import { createServer, Model, Response } from 'miragejs';
 import { routes } from './routes/routes';
 import { ThemeProvider } from '@emotion/react';
 import './styles/index.scss';
-import { TasksProps } from './transactions';
+import { TasksProps } from './hooks/useTasks';
 
 createServer({
   models: {

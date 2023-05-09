@@ -2,13 +2,12 @@ import styles from './styles.module.scss';
 import trashIcon from '../../assets/trash.svg';
 import { api } from '../../services/api';
 import { Box } from '@mui/material';
-import { TasksContext } from '../../transactions';
-import { useContext } from 'react';
+import { useTasks } from '../../hooks/useTasks';
 import clsx from 'clsx';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 export function Tasks() {
-  const { tasks, setTasks } = useContext(TasksContext)
+  const { tasks, setTasks } = useTasks();
 
   // essa função vai atualizar a tarefa fazendo um filtro com o id da tarefa que foi clicada e depois vai atualizar a tarefa do array de tarefas.
   const handleUpdateTask = async (id: number) => {
